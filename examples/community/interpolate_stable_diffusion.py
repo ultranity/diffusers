@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Callable, List, Optional, Union
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers.configuration_utils import FrozenDict
 from diffusers.models import AutoencoderKL, UNet2DConditionModel

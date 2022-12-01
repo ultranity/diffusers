@@ -1,6 +1,6 @@
 from typing import Callable, List, Optional, Union
 
-import torch
+from diffusers import torch
 
 import PIL
 from diffusers.configuration_utils import FrozenDict

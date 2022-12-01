@@ -2,7 +2,7 @@ import inspect
 from typing import Callable, List, Optional, Tuple, Union
 
 import numpy as np
-import torch
+from diffusers import torch
 
 import PIL
 from diffusers.configuration_utils import FrozenDict

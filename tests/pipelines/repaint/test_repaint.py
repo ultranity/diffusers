@@ -16,7 +16,7 @@
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import RePaintPipeline, RePaintScheduler, UNet2DModel
 from diffusers.utils.testing_utils import load_image, require_torch_gpu, slow, torch_device

@@ -16,7 +16,7 @@
 import gc
 import unittest
 
-import torch
+from diffusers import torch
 
 from diffusers import AutoencoderKL
 from diffusers.modeling_utils import ModelMixin

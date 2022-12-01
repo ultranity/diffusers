@@ -2,8 +2,8 @@ import inspect
 from typing import Optional, Tuple, Union
 
 import numpy as np
-import torch
-import torch.utils.checkpoint
+from diffusers import torch
+#import torch.utils.checkpoint
 
 import PIL
 

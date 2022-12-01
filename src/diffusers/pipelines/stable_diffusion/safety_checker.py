@@ -13,8 +13,11 @@
 # limitations under the License.
 
 import numpy as np
-import torch
-import torch.nn as nn
+from diffusers import torch
+#import torch.nn.functional as F
+#from torch import nn
+F = torch.nn.functional
+nn = torch.nn
 
 from transformers import CLIPConfig, CLIPVisionModel, PreTrainedModel
 

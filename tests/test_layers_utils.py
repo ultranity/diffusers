@@ -17,8 +17,9 @@
 import unittest
 
 import numpy as np
-import torch
-from torch import nn
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
 
 from diffusers.models.attention import GEGLU, AdaLayerNorm, ApproximateGELU, AttentionBlock, Transformer2DModel
 from diffusers.models.embeddings import get_timestep_embedding

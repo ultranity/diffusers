@@ -7,8 +7,9 @@ import warnings
 from typing import List, Optional, Union
 
 import numpy as np
-import torch
-import torch.nn.functional as F
+from diffusers import torch
+#import torch.nn.functional as F
+F = torch.nn.functional
 
 import PIL
 from accelerate import Accelerator

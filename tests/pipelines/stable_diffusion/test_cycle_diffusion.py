@@ -18,7 +18,7 @@ import random
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import AutoencoderKL, CycleDiffusionPipeline, DDIMScheduler, UNet2DConditionModel, UNet2DModel, VQModel
 from diffusers.utils import floats_tensor, load_image, load_numpy, slow, torch_device

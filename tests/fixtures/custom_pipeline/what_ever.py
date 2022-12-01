@@ -16,7 +16,7 @@
 
 from typing import Optional, Tuple, Union
 
-import torch
+from diffusers import torch
 
 from diffusers.pipeline_utils import DiffusionPipeline, ImagePipelineOutput
 

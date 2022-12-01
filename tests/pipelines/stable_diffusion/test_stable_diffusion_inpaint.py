@@ -18,7 +18,7 @@ import random
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import (
     AutoencoderKL,

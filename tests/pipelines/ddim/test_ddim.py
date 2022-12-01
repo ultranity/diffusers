@@ -16,7 +16,7 @@
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import DDIMPipeline, DDIMScheduler, UNet2DModel
 from diffusers.utils.testing_utils import require_torch_gpu, slow, torch_device

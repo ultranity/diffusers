@@ -3,7 +3,7 @@ import os
 import random
 
 import numpy as np
-import torch
+from diffusers import torch
 
 
 def enable_full_determinism(seed: int):

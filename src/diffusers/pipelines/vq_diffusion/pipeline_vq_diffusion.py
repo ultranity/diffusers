@@ -14,7 +14,7 @@
 
 from typing import Callable, List, Optional, Tuple, Union
 
-import torch
+from diffusers import torch
 
 from diffusers import Transformer2DModel, VQModel
 from diffusers.schedulers.scheduling_vq_diffusion import VQDiffusionScheduler

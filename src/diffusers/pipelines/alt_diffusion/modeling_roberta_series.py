@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 from typing import Optional, Tuple
 
-import torch
-from torch import nn
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
 
 from transformers import RobertaPreTrainedModel, XLMRobertaConfig, XLMRobertaModel
 from transformers.utils import ModelOutput

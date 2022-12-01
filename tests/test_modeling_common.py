@@ -19,7 +19,7 @@ import unittest
 from typing import Dict, List, Tuple
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers.modeling_utils import ModelMixin
 from diffusers.training_utils import EMAModel

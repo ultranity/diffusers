@@ -15,7 +15,7 @@
 
 import unittest
 
-import torch
+from diffusers import torch
 
 from diffusers import UNet1DModel
 from diffusers.utils import floats_tensor, slow, torch_device

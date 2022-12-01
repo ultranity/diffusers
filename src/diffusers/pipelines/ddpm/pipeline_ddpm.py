@@ -15,7 +15,7 @@
 
 from typing import Optional, Tuple, Union
 
-import torch
+from diffusers import torch
 
 from ...configuration_utils import FrozenDict
 from ...pipeline_utils import DiffusionPipeline, ImagePipelineOutput

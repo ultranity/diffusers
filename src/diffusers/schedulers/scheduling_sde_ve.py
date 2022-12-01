@@ -18,7 +18,7 @@ import math
 from dataclasses import dataclass
 from typing import Optional, Tuple, Union
 
-import torch
+from diffusers import torch
 
 from ..configuration_utils import ConfigMixin, register_to_config
 from ..utils import BaseOutput

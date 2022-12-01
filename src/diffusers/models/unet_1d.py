@@ -15,8 +15,11 @@
 from dataclasses import dataclass
 from typing import Optional, Tuple, Union
 
-import torch
-import torch.nn as nn
+from diffusers import torch
+#import torch.nn.functional as F
+#from torch import nn
+F = torch.nn.functional
+nn = torch.nn
 
 from ..configuration_utils import ConfigMixin, register_to_config
 from ..modeling_utils import ModelMixin

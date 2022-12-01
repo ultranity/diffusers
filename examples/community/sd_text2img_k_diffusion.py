@@ -15,7 +15,7 @@
 import importlib
 from typing import Callable, List, Optional, Union
 
-import torch
+from diffusers import torch
 
 from diffusers import LMSDiscreteScheduler
 from diffusers.pipeline_utils import DiffusionPipeline

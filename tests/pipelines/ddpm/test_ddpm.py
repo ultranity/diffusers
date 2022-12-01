@@ -16,7 +16,7 @@
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import DDPMPipeline, DDPMScheduler, UNet2DModel
 from diffusers.utils import deprecate

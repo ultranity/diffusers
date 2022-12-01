@@ -17,7 +17,7 @@ import gc
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import DanceDiffusionPipeline, IPNDMScheduler, UNet1DModel
 from diffusers.utils import slow, torch_device

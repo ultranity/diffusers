@@ -17,7 +17,7 @@
 import argparse
 import json
 
-import torch
+from diffusers import torch
 
 from diffusers import DDPMScheduler, LDMPipeline, UNet2DModel, VQModel
 

@@ -4,6 +4,7 @@ from .utils import (
     is_onnx_available,
     is_scipy_available,
     is_torch_available,
+    is_oneflow_available,
     is_transformers_available,
     is_unidecode_available,
 )
@@ -14,7 +15,10 @@ __version__ = "0.8.0.dev0"
 from .configuration_utils import ConfigMixin
 from .onnx_utils import OnnxRuntimeModel
 from .utils import logging
-
+if is_oneflow_available():
+    import oneflow as torch
+else:
+    import torch
 
 if is_torch_available():
     from .modeling_utils import ModelMixin
@@ -112,3 +116,19 @@ if is_flax_available() and is_transformers_available():
     from .pipelines import FlaxStableDiffusionPipeline
 else:
     from .utils.dummy_flax_and_transformers_objects import *  # noqa F403
+
+if is_oneflow_available():
+    from .models.unet_2d_condition_oneflow import OneFlowUNet2DConditionModel
+    from .models.vae_oneflow import OneFlowAutoencoderKL
+
+    from .schedulers import (
+        OneFlowDDIMScheduler,
+        OneFlowPNDMScheduler,
+        OneFlowDPMSolverMultistepScheduler,
+        OneFlowSchedulerMixin
+    )
+
+    from .pipelines import OneFlowStableDiffusionPipeline
+    from .pipelines import OneFlowStableDiffusionImg2ImgPipeline
+    from .pipeline_oneflow_utils import OneFlowDiffusionPipeline
+    from .modeling_oneflow_utils import OneFlowModelMixin

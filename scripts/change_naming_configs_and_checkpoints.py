@@ -18,7 +18,7 @@ import argparse
 import json
 import os
 
-import torch
+from diffusers import torch
 
 from diffusers import UNet2DConditionModel, UNet2DModel
 from transformers.file_utils import has_file

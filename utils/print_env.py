@@ -30,7 +30,7 @@ print("OS platform:", platform.platform())
 print("OS architecture:", platform.machine())
 
 try:
-    import torch
+    from diffusers import torch
 
     print("Torch version:", torch.__version__)
     print("Cuda available:", torch.cuda.is_available())

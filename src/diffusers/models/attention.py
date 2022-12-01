@@ -16,10 +16,11 @@ import warnings
 from dataclasses import dataclass
 from typing import Optional
 
-import torch
-import torch.nn.functional as F
-from torch import nn
-
+from diffusers import torch
+#import torch.nn.functional as F
+#from torch import nn
+F = torch.nn.functional
+nn = torch.nn
 from ..configuration_utils import ConfigMixin, register_to_config
 from ..modeling_utils import ModelMixin
 from ..models.embeddings import ImagePositionalEmbeddings

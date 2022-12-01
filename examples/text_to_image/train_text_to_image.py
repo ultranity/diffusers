@@ -7,9 +7,10 @@ from pathlib import Path
 from typing import Iterable, Optional
 
 import numpy as np
-import torch
-import torch.nn.functional as F
-import torch.utils.checkpoint
+from diffusers import torch
+#import torch.nn.functional as F
+F = torch.nn.functional
+#import torch.utils.checkpoint
 
 from accelerate import Accelerator
 from accelerate.logging import get_logger

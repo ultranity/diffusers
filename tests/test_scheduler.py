@@ -20,8 +20,11 @@ import unittest
 from typing import Dict, List, Tuple
 
 import numpy as np
-import torch
-import torch.nn.functional as F
+from diffusers import torch
+#import torch.nn.functional as F
+#from torch import nn
+F = torch.nn.functional
+nn = torch.nn
 
 import diffusers
 from diffusers import (

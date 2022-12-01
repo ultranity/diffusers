@@ -5,7 +5,7 @@
 import argparse
 import os.path as osp
 
-import torch
+from diffusers import torch
 
 
 # =================#

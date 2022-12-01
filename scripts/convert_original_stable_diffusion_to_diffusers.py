@@ -17,7 +17,7 @@
 import argparse
 import os
 
-import torch
+from diffusers import torch
 
 
 try:

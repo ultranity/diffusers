@@ -15,8 +15,9 @@ from dataclasses import dataclass
 from typing import Optional, Tuple, Union
 
 import numpy as np
-import torch
-import torch.nn as nn
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
 
 from ..configuration_utils import ConfigMixin, register_to_config
 from ..modeling_utils import ModelMixin

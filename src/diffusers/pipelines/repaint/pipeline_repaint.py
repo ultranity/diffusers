@@ -16,7 +16,7 @@
 from typing import Optional, Tuple, Union
 
 import numpy as np
-import torch
+from diffusers import torch
 
 import PIL
 from tqdm.auto import tqdm

@@ -1,6 +1,6 @@
 import random
 
-import torch
+from diffusers import torch
 
 from diffusers import UNet2DModel
 from huggingface_hub import HfApi

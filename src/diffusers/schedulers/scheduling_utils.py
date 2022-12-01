@@ -16,7 +16,7 @@ import os
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Union
 
-import torch
+from diffusers import torch
 
 from ..utils import BaseOutput
 

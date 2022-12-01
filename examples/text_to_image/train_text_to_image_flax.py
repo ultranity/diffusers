@@ -7,8 +7,8 @@ from pathlib import Path
 from typing import Optional
 
 import numpy as np
-import torch
-import torch.utils.checkpoint
+from diffusers import torch
+#import torch.utils.checkpoint
 
 import jax
 import jax.numpy as jnp

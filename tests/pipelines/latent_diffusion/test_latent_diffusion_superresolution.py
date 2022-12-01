@@ -17,7 +17,7 @@ import random
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import DDIMScheduler, LDMSuperResolutionPipeline, UNet2DModel, VQModel
 from diffusers.utils import PIL_INTERPOLATION, floats_tensor, load_image, slow, torch_device

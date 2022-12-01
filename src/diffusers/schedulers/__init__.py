@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-from ..utils import is_flax_available, is_scipy_available, is_torch_available
+from ..utils import is_flax_available, is_scipy_available, is_torch_available, is_oneflow_available
 
 
 if is_torch_available():
@@ -50,3 +50,9 @@ if is_scipy_available() and is_torch_available():
     from .scheduling_lms_discrete import LMSDiscreteScheduler
 else:
     from ..utils.dummy_torch_and_scipy_objects import *  # noqa F403
+
+if is_oneflow_available():
+    from .scheduling_oneflow_utils import OneFlowSchedulerMixin
+    from .scheduling_ddim_oneflow import OneFlowDDIMScheduler
+    from .scheduling_pndm_oneflow import OneFlowPNDMScheduler
+    from .scheduling_dpmsolver_multistep_oneflow import OneFlowDPMSolverMultistepScheduler

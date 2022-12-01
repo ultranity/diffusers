@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import numpy as np
-import torch
-from torch import nn
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
 
 from .attention import AttentionBlock, Transformer2DModel
 from .resnet import Downsample2D, FirDownsample2D, FirUpsample2D, ResnetBlock2D, Upsample2D

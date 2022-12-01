@@ -18,7 +18,7 @@ import math
 import tracemalloc
 import unittest
 
-import torch
+from diffusers import torch
 
 from diffusers import UNet2DConditionModel, UNet2DModel
 from diffusers.utils import (

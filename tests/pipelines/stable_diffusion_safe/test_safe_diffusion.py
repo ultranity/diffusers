@@ -19,7 +19,7 @@ import tempfile
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import AutoencoderKL, DDIMScheduler, LMSDiscreteScheduler, PNDMScheduler, UNet2DConditionModel
 from diffusers.pipelines.stable_diffusion_safe import StableDiffusionPipelineSafe as StableDiffusionPipeline

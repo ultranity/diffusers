@@ -1,6 +1,6 @@
 from typing import Optional, Tuple, Union
 
-import torch
+from diffusers import torch
 
 from diffusers import DDIMScheduler, DDPMScheduler, DiffusionPipeline, UNet2DConditionModel
 from diffusers.pipeline_utils import ImagePipelineOutput

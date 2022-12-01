@@ -4,8 +4,9 @@ import math
 import os
 from copy import deepcopy
 
-import torch
-from torch import nn
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
 
 from audio_diffusion.models import DiffusionAttnUnet1D
 from diffusers import DanceDiffusionPipeline, IPNDMScheduler, UNet1DModel

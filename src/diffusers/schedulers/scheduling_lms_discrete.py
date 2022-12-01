@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from typing import Optional, Tuple, Union
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from scipy import integrate
 

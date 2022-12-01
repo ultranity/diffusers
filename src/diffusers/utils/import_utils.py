@@ -42,11 +42,25 @@ ENV_VARS_TRUE_AND_AUTO_VALUES = ENV_VARS_TRUE_VALUES.union({"AUTO"})
 USE_TF = os.environ.get("USE_TF", "AUTO").upper()
 USE_TORCH = os.environ.get("USE_TORCH", "AUTO").upper()
 USE_JAX = os.environ.get("USE_FLAX", "AUTO").upper()
+USE_ONEFLOW = os.environ.get("USE_ONEFLOW", "AUTO").upper()
 
 STR_OPERATION_TO_FUNC = {">": op.gt, ">=": op.ge, "==": op.eq, "!=": op.ne, "<=": op.le, "<": op.lt}
 
+_oneflow_version = "N/A"
+if USE_ONEFLOW in ENV_VARS_TRUE_AND_AUTO_VALUES:
+    _oneflow_available = importlib.util.find_spec("oneflow") is not None
+    if _oneflow_available:
+        try:
+            _oneflow_version = importlib_metadata.version("oneflow")
+            logger.info(f"Pyoneflow version {_oneflow_version} available.")
+        except importlib_metadata.PackageNotFoundError:
+            _oneflow_available = False
+else:
+    logger.info("Disabling oneflow")
+    _oneflow_available = False
+
 _torch_version = "N/A"
-if USE_TORCH in ENV_VARS_TRUE_AND_AUTO_VALUES and USE_TF not in ENV_VARS_TRUE_VALUES:
+if USE_TORCH in ENV_VARS_TRUE_AND_AUTO_VALUES and USE_TF not in ENV_VARS_TRUE_VALUES and USE_ONEFLOW not in ENV_VARS_TRUE_VALUES:
     _torch_available = importlib.util.find_spec("torch") is not None
     if _torch_available:
         try:
@@ -186,6 +200,9 @@ except importlib_metadata.PackageNotFoundError:
     _xformers_available = False
 
 
+def is_oneflow_available():
+    return _oneflow_available
+
 def is_torch_available():
     return _torch_available
 
@@ -287,6 +304,7 @@ BACKENDS_MAPPING = OrderedDict(
         ("scipy", (is_scipy_available, SCIPY_IMPORT_ERROR)),
         ("tf", (is_tf_available, TENSORFLOW_IMPORT_ERROR)),
         ("torch", (is_torch_available, PYTORCH_IMPORT_ERROR)),
+        ("oneflow", (is_oneflow_available, PYTORCH_IMPORT_ERROR)),
         ("transformers", (is_transformers_available, TRANSFORMERS_IMPORT_ERROR)),
         ("unidecode", (is_unidecode_available, UNIDECODE_IMPORT_ERROR)),
     ]

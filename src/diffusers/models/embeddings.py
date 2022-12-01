@@ -14,8 +14,9 @@
 import math
 
 import numpy as np
-import torch
-from torch import nn
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
 
 
 def get_timestep_embedding(

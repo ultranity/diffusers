@@ -2,8 +2,9 @@ import argparse
 import math
 import os
 
-import torch
-import torch.nn.functional as F
+from diffusers import torch
+#import torch.nn.functional as F
+F = torch.nn.functional
 
 from accelerate import Accelerator
 from accelerate.logging import get_logger

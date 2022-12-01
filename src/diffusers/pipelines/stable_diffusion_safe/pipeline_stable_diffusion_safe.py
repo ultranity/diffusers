@@ -3,7 +3,7 @@ import warnings
 from typing import Callable, List, Optional, Union
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer
 

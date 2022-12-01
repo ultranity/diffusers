@@ -12,8 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import torch
-import torch.nn as nn
+from diffusers import torch
+#import torch.nn.functional as F
+F = torch.nn.functional
+#from torch import nn
+nn = torch.nn
 
 from transformers import CLIPConfig, CLIPVisionModel, PreTrainedModel
 

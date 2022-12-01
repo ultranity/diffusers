@@ -17,7 +17,7 @@ import os
 import shutil
 from pathlib import Path
 
-import torch
+from diffusers import torch
 from torch.onnx import export
 
 import onnx

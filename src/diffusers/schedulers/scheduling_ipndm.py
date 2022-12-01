@@ -15,7 +15,7 @@
 import math
 from typing import Tuple, Union
 
-import torch
+from diffusers import torch
 
 from ..configuration_utils import ConfigMixin, register_to_config
 from .scheduling_utils import SchedulerMixin, SchedulerOutput

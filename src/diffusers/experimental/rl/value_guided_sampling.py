@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import numpy as np
-import torch
+from diffusers import torch
 
 import tqdm
 

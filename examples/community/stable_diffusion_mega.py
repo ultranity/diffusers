@@ -1,6 +1,6 @@
 from typing import Any, Callable, Dict, List, Optional, Union
 
-import torch
+from diffusers import torch
 
 import PIL.Image
 from diffusers import (

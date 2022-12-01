@@ -16,7 +16,7 @@ import inspect
 from typing import Callable, List, Optional, Union
 
 import numpy as np
-import torch
+from diffusers import torch
 
 import PIL
 from diffusers.utils import is_accelerate_available
@@ -38,7 +38,7 @@ from . import StableDiffusionPipelineOutput
 from .safety_checker import StableDiffusionSafetyChecker
 
 
-logger = logging.get_logger(__name__)
+logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
 
 def preprocess_image(image):
@@ -92,7 +92,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
             Model that extracts features from generated images to be used as inputs for the `safety_checker`.
     """
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.__init__
     def __init__(
         self,
         vae: AutoencoderKL,
@@ -159,7 +158,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
             feature_extractor=feature_extractor,
         )
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.enable_attention_slicing
     def enable_attention_slicing(self, slice_size: Optional[Union[str, int]] = "auto"):
         r"""
         Enable sliced attention computation.
@@ -179,7 +177,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
             slice_size = self.unet.config.attention_head_dim // 2
         self.unet.set_attention_slice(slice_size)
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.disable_attention_slicing
     def disable_attention_slicing(self):
         r"""
         Disable sliced attention computation. If `enable_attention_slicing` was previously invoked, this method will go
@@ -188,7 +185,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
         # set slice_size = `None` to disable `attention slicing`
         self.enable_attention_slicing(None)
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.enable_sequential_cpu_offload
     def enable_sequential_cpu_offload(self, gpu_id=0):
         r"""
         Offloads all models to CPU using accelerate, significantly reducing memory usage. When called, unet,
@@ -206,7 +202,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
             if cpu_offloaded_model is not None:
                 cpu_offload(cpu_offloaded_model, device)
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.enable_xformers_memory_efficient_attention
     def enable_xformers_memory_efficient_attention(self):
         r"""
         Enable memory efficient attention as implemented in xformers.
@@ -219,7 +214,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
         """
         self.unet.set_use_memory_efficient_attention_xformers(True)
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.disable_xformers_memory_efficient_attention
     def disable_xformers_memory_efficient_attention(self):
         r"""
         Disable memory efficient attention as implemented in xformers.
@@ -227,7 +221,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
         self.unet.set_use_memory_efficient_attention_xformers(False)
 
     @property
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline._execution_device
     def _execution_device(self):
         r"""
         Returns the device on which the pipeline's models will be executed. After calling
@@ -245,7 +238,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
                 return torch.device(module._hf_hook.execution_device)
         return self.device
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline._encode_prompt
     def _encode_prompt(self, prompt, device, num_images_per_prompt, do_classifier_free_guidance, negative_prompt):
         r"""
         Encodes the prompt into text encoder hidden states.
@@ -351,7 +343,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
 
         return text_embeddings
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.run_safety_checker
     def run_safety_checker(self, image, device, dtype):
         if self.safety_checker is not None:
             safety_checker_input = self.feature_extractor(self.numpy_to_pil(image), return_tensors="pt").to(device)
@@ -362,7 +353,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
             has_nsfw_concept = None
         return image, has_nsfw_concept
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.decode_latents
     def decode_latents(self, latents):
         latents = 1 / 0.18215 * latents
         image = self.vae.decode(latents).sample
@@ -371,7 +361,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
         image = image.cpu().permute(0, 2, 3, 1).float().numpy()
         return image
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline.prepare_extra_step_kwargs
     def prepare_extra_step_kwargs(self, generator, eta):
         # prepare extra kwargs for the scheduler step, since not all schedulers have the same signature
         # eta (η) is only used with the DDIMScheduler, it will be ignored for other schedulers.
@@ -389,13 +378,12 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
             extra_step_kwargs["generator"] = generator
         return extra_step_kwargs
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion_img2img.StableDiffusionImg2ImgPipeline.check_inputs
     def check_inputs(self, prompt, strength, callback_steps):
         if not isinstance(prompt, str) and not isinstance(prompt, list):
             raise ValueError(f"`prompt` has to be of type `str` or `list` but is {type(prompt)}")
 
         if strength < 0 or strength > 1:
-            raise ValueError(f"The value of strength should in [1.0, 1.0] but is {strength}")
+            raise ValueError(f"The value of strength should in [0.0, 1.0] but is {strength}")
 
         if (callback_steps is None) or (
             callback_steps is not None and (not isinstance(callback_steps, int) or callback_steps <= 0)
@@ -405,7 +393,6 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
                 f" {type(callback_steps)}."
             )
 
-    # Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion_img2img.StableDiffusionImg2ImgPipeline.get_timesteps
     def get_timesteps(self, num_inference_steps, strength, device):
         # get the original timestep using init_timestep
         offset = self.scheduler.config.get("steps_offset", 0)
@@ -417,8 +404,8 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
 
         return timesteps
 
-    def prepare_latents(self, init_image, timestep, batch_size, num_images_per_prompt, dtype, device, generator):
-        init_image = init_image.to(device=self.device, dtype=dtype)
+    def prepare_latents(self, init_image, timestep, batch_size, num_images_per_prompt, dtype, device, generator=None):
+        init_image = init_image.to(device=device, dtype=dtype)
         init_latent_dist = self.vae.encode(init_image).latent_dist
         init_latents = init_latent_dist.sample(generator=generator)
         init_latents = 0.18215 * init_latents
@@ -428,7 +415,9 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
         init_latents_orig = init_latents
 
         # add noise to latents using the timesteps
-        noise = torch.randn(init_latents.shape, generator=generator, device=self.device, dtype=dtype)
+        noise = torch.randn(init_latents.shape, generator=generator, device=device, dtype=dtype)
+
+        # get latents
         init_latents = self.scheduler.add_noise(init_latents, noise, timestep)
         latents = init_latents
         return latents, init_latents_orig, noise
@@ -437,15 +426,16 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
     def __call__(
         self,
         prompt: Union[str, List[str]],
-        init_image: Union[torch.FloatTensor, PIL.Image.Image],
-        mask_image: Union[torch.FloatTensor, PIL.Image.Image],
-        strength: float = 0.8,
+        init_image: Optional[Union[torch.FloatTensor, PIL.Image.Image]]=None,
+        mask_image: Optional[Union[torch.FloatTensor, PIL.Image.Image]]=None,
+        strength: float = 1.0,
         num_inference_steps: Optional[int] = 50,
         guidance_scale: Optional[float] = 7.5,
         negative_prompt: Optional[Union[str, List[str]]] = None,
         num_images_per_prompt: Optional[int] = 1,
         eta: Optional[float] = 0.0,
         generator: Optional[torch.Generator] = None,
+        latents: Optional[torch.FloatTensor] = None,
         output_type: Optional[str] = "pil",
         return_dict: bool = True,
         callback: Optional[Callable[[int, int, torch.FloatTensor], None]] = None,
@@ -467,10 +457,11 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
                 PIL image, it will be converted to a single channel (luminance) before use. If it's a tensor, it should
                 contain one color channel (L) instead of 3, so the expected shape would be `(B, H, W, 1)`.
             strength (`float`, *optional*, defaults to 0.8):
-                Conceptually, indicates how much to inpaint the masked area. Must be between 0 and 1. When `strength`
-                is 1, the denoising process will be run on the masked area for the full number of iterations specified
-                in `num_inference_steps`. `init_image` will be used as a reference for the masked area, adding more
-                noise to that region the larger the `strength`. If `strength` is 0, no inpainting will occur.
+                Conceptually, indicates how much to transform the masked area. Must be between 0 and 1.
+                `init_image` will be used as a starting point, adding more noise to it the larger the `strength`. The
+                number of denoising steps depends on the amount of noise initially added. When `strength` is 1, the denoising process will be run on the masked area for the full number of iterations specified in 
+                `num_inference_steps`. 
+                If `strength` is 0, no inpainting will occur.
             num_inference_steps (`int`, *optional*, defaults to 50):
                 The reference number of denoising steps. More denoising steps usually lead to a higher quality image at
                 the expense of slower inference. This parameter will be modulated by `strength`, as explained above.
@@ -491,6 +482,10 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
             generator (`torch.Generator`, *optional*):
                 A [torch generator](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation
                 deterministic.
+            latents (`torch.FloatTensor`, *optional*):
+                Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
+                generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
+                tensor will ge generated by sampling using the supplied random `generator`.
             output_type (`str`, *optional*, defaults to `"pil"`):
                 The output format of the generate image. Choose between
                 [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
@@ -528,10 +523,10 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
         )
 
         # 4. Preprocess image and mask
-        if not isinstance(init_image, torch.FloatTensor):
+        if init_image is not None and not isinstance(init_image, torch.FloatTensor):
             init_image = preprocess_image(init_image)
 
-        if not isinstance(mask_image, torch.FloatTensor):
+        if mask_image is not None and not isinstance(mask_image, torch.FloatTensor):
             mask_image = preprocess_mask(mask_image)
 
         # 5. set timesteps
@@ -542,12 +537,21 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
         # 6. Prepare latent variables
         # encode the init image into latents and scale the latents
         latents, init_latents_orig, noise = self.prepare_latents(
-            init_image, latent_timestep, batch_size, num_images_per_prompt, text_embeddings.dtype, device, generator
+            init_image,
+            latent_timestep,
+            batch_size,
+            num_images_per_prompt,
+            text_embeddings.dtype,
+            device,
+            generator,
+            latents,
         )
 
         # 7. Prepare mask latent
-        mask = mask_image.to(device=self.device, dtype=latents.dtype)
-        mask = torch.cat([mask] * batch_size * num_images_per_prompt)
+        mask = None
+        if mask_image is not None:
+            mask = mask_image.to(device=self.device, dtype=latents.dtype)
+            mask = torch.cat([mask] * batch_size * num_images_per_prompt)
 
         # 8. Prepare extra step kwargs. TODO: Logic should ideally just be moved out of the pipeline
         extra_step_kwargs = self.prepare_extra_step_kwargs(generator, eta)
@@ -569,9 +573,10 @@ class StableDiffusionInpaintPipelineLegacy(DiffusionPipeline):
             # compute the previous noisy sample x_t -> x_t-1
             latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs).prev_sample
             # masking
-            init_latents_proper = self.scheduler.add_noise(init_latents_orig, noise, torch.tensor([t]))
+            if mask is not None:
+                init_latents_proper = self.scheduler.add_noise(init_latents_orig, noise, torch.tensor([t]))
 
-            latents = (init_latents_proper * mask) + (latents * (1 - mask))
+                latents = (init_latents_proper * mask) + (latents * (1 - mask))
 
             # call the callback, if provided
             if callback is not None and i % callback_steps == 0:

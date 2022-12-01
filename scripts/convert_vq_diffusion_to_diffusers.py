@@ -35,7 +35,7 @@ $ python ./scripts/convert_vq_diffusion_to_diffusers.py \
 import argparse
 import tempfile
 
-import torch
+from diffusers import torch
 
 import yaml
 from accelerate import init_empty_weights, load_checkpoint_and_dispatch

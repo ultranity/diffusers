@@ -14,9 +14,11 @@
 from dataclasses import dataclass
 from typing import Optional, Tuple, Union
 
-import torch
-import torch.nn as nn
-import torch.utils.checkpoint
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
+#import torch.utils.checkpoint
+#checkpoint = torch.utils.checkpoint
 
 from ..configuration_utils import ConfigMixin, register_to_config
 from ..modeling_utils import ModelMixin

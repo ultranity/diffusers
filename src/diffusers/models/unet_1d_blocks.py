@@ -13,9 +13,11 @@
 # limitations under the License.
 import math
 
-import torch
-import torch.nn.functional as F
-from torch import nn
+from diffusers import torch
+#import torch.nn.functional as F
+#from torch import nn
+F = torch.nn.functional
+nn = torch.nn
 
 from .resnet import Downsample1D, ResidualTemporalBlock1D, Upsample1D, rearrange_dims
 

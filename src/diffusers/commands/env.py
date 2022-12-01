@@ -18,7 +18,8 @@ from argparse import ArgumentParser
 import huggingface_hub
 
 from .. import __version__ as version
-from ..utils import is_torch_available, is_transformers_available
+from ..utils import is_torch_available,
+ is_oneflow_available, is_transformers_available
 from . import BaseDiffusersCLICommand
 
 
@@ -38,7 +39,7 @@ class EnvironmentCommand(BaseDiffusersCLICommand):
         pt_version = "not installed"
         pt_cuda_available = "NA"
         if is_torch_available():
-            import torch
+            from diffusers import torch
 
             pt_version = torch.__version__
             pt_cuda_available = torch.cuda.is_available()

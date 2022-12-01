@@ -18,7 +18,7 @@ import os
 from functools import partial
 from typing import Callable, List, Optional, Tuple, Union
 
-import torch
+from diffusers import torch
 from torch import Tensor, device
 
 from huggingface_hub import hf_hub_download

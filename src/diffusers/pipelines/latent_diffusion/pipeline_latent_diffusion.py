@@ -15,9 +15,10 @@
 import inspect
 from typing import List, Optional, Tuple, Union
 
-import torch
-import torch.nn as nn
-import torch.utils.checkpoint
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
+#import torch.utils.checkpoint
 
 from transformers.activations import ACT2FN
 from transformers.configuration_utils import PretrainedConfig

@@ -17,7 +17,7 @@ import PIL.ImageOps
 import requests
 from packaging import version
 
-from .import_utils import is_flax_available, is_onnx_available, is_torch_available
+from .import_utils import is_flax_available, is_onnx_available, is_torch_available, is_oneflow_available
 
 
 global_rng = random.Random()

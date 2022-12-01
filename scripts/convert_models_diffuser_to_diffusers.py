@@ -1,7 +1,7 @@
 import json
 import os
 
-import torch
+from diffusers import torch
 
 from diffusers import UNet1DModel
 

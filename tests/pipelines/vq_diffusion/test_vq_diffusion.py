@@ -17,7 +17,7 @@ import gc
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import Transformer2DModel, VQDiffusionPipeline, VQDiffusionScheduler, VQModel
 from diffusers.pipelines.vq_diffusion.pipeline_vq_diffusion import LearnedClassifierFreeSamplingEmbeddings

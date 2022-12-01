@@ -5,7 +5,7 @@ import inspect
 import warnings
 from typing import List, Optional, Union
 
-import torch
+from diffusers import torch
 
 from diffusers.models import AutoencoderKL, UNet2DConditionModel
 from diffusers.pipeline_utils import DiffusionPipeline

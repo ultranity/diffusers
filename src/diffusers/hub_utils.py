@@ -34,6 +34,7 @@ from .utils.import_utils import (
     is_modelcards_available,
     is_onnx_available,
     is_torch_available,
+    is_oneflow_available,
 )
 
 

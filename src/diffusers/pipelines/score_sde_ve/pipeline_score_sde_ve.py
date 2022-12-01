@@ -14,7 +14,7 @@
 
 from typing import Optional, Tuple, Union
 
-import torch
+from diffusers import torch
 
 from ...models import UNet2DModel
 from ...pipeline_utils import DiffusionPipeline, ImagePipelineOutput

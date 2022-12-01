@@ -11,6 +11,7 @@ __pycache__/
 # tests and logs
 tests/fixtures/cached_*_text.txt
 logs/
+log
 lightning_logs/
 lang_code_data/
 

@@ -18,7 +18,7 @@ import random
 import unittest
 
 import numpy as np
-import torch
+from diffusers import torch
 
 from diffusers import AltDiffusionPipeline, AutoencoderKL, DDIMScheduler, PNDMScheduler, UNet2DConditionModel
 from diffusers.pipelines.alt_diffusion.modeling_roberta_series import (

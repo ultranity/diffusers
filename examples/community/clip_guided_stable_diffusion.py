@@ -1,9 +1,11 @@
 import inspect
 from typing import List, Optional, Union
 
-import torch
-from torch import nn
-from torch.nn import functional as F
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
+#from torch.nn import functional as F
+F = torch.nn.functional 
 
 from diffusers import (
     AutoencoderKL,

@@ -1,8 +1,10 @@
 from functools import partial
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+from diffusers import torch
+#from torch import nn
+nn = torch.nn
+#import torch.nn.functional as F
+F = torch.nn.functional
 
 
 class Upsample1D(nn.Module):

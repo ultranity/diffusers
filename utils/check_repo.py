@@ -23,7 +23,7 @@ from difflib import get_close_matches
 from pathlib import Path
 
 from diffusers.models.auto import get_values
-from diffusers.utils import ENV_VARS_TRUE_VALUES, is_flax_available, is_tf_available, is_torch_available
+from diffusers.utils import ENV_VARS_TRUE_VALUES, is_flax_available, is_tf_available, is_torch_available, is_oneflow_available
 
 
 # All paths are set with the intent you should run this script from the root of the repo with the command

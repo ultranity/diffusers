@@ -1,7 +1,7 @@
 import argparse
 import json
 
-import torch
+from diffusers import torch
 
 from diffusers import AutoencoderKL, DDPMPipeline, DDPMScheduler, UNet2DModel, VQModel
 
